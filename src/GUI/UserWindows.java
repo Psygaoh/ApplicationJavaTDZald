@@ -13,84 +13,98 @@ import java.io.File;
 import java.io.IOException;
 
 public class UserWindows extends JFrame implements ActionListener {
+    int count = 0;
+
+
+    JPanel container = new JPanel();
+    JPanel panelTitre = new JPanel();
+    JPanel panelContenuMargin = new JPanel();
+    JPanel panelContenu = new JPanel();
+    JPanel espace = new JPanel();
+    JPanel espaceH = new JPanel();
+
+    JLabel label_1 = new JLabel("welcome");
+    JButton bouton_1 = new JButton("essai");
+    JButton bouton_2 = new JButton("essai2");
+    JButton bouton_3 = new JButton("essai3");
+    JButton bouton_4 = new JButton("essai4");
+    // parametres
+
+
+
+
 // créer la fenetre de départ
+
     public UserWindows() {
+      //  super();
+        setUp(this);
+    }
+
+
+    public UserWindows(UserWindows userWindows) {
         super();
-        setUp();
-    }
-// test ???
-
-/*
-    public UserWindows(String exercice){
-        super();
-        if (exercice == "exercice 1"){
-            exercice1();
-        }
-            else {exercice2();
-        }
-    }
-    */
-
-// fonction exercice 1; appelle helloWorld dans une nouvelle fenetre
-    private void exercice1() {
-       HelloWorld helloWorld = new HelloWorld(this);
-       /* setTitle("Exercice 1");
-        setSize(1100, 700);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        */
+        setUp(userWindows);
     }
 
-// exercice 2
-    private void exercice2() {
-        setTitle("Exercice 2");
-        setSize(1100, 700);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    private void setUp(UserWindows userWindows) {
+        userWindows.setTitle("Home");
+        userWindows.setSize(1100, 700);
+        userWindows.setResizable(false);
+        userWindows.setLocationRelativeTo(null);
+        userWindows.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        userWindows.setContentPane(buildAccueilContent(this));
+        userWindows.setContentPane(addElementsAccueil(this));
+        userWindows.setVisible(true);
     }
 
-    // constructeur de la fenetre de base
-    private void setUp() {
-        setTitle("Mon application");
-        setSize(1100, 700);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setContentPane(buildPanelContent());
-        this.setVisible(true);
+    private void setUp(HelloWorldWindows helloWorldWindows) {
+        helloWorldWindows.setTitle("Mon application");
+        helloWorldWindows.setSize(1100, 700);
+        helloWorldWindows.setResizable(false);
+        helloWorldWindows.setLocationRelativeTo(null);
+        helloWorldWindows.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        helloWorldWindows.setContentPane(buildAccueilContent(this));
+        helloWorldWindows.setVisible(true);
     }
-
 
     // contenu de la fenetre de base
-    private JPanel buildPanelContent() {
-        // Ressources
 
-        // creations
-        JPanel container = new JPanel();
-        JPanel panelTitre = new JPanel();
-        JPanel panelContenuMargin = new JPanel();
-        JPanel panelContenu = new JPanel();
-        JPanel espace = new JPanel();
-        JPanel espaceH = new JPanel();
+//ajoute les differents elements dans l'ordre afin de composer l'affichage
+    private JPanel addElementsAccueil(UserWindows userWindows){
+    container.add(panelTitre);
+    container.add(panelContenuMargin);
+    panelContenuMargin.add(espaceH);
+    panelContenuMargin.add(panelContenu);
 
 
-        JLabel label_1 = new JLabel("welcome");
-        JButton bouton_1 = new JButton("essai");
-        JButton bouton_2 = new JButton("essai2");
-        JButton bouton_3 = new JButton("essai3");
-        JButton bouton_4 = new JButton("essai4");
-        // parametres
+    panelTitre.add(label_1);
+
+    panelContenu.add(bouton_1);
+    panelContenu.add(bouton_2);
+    panelContenu.add(bouton_3);
+    panelContenu.add(bouton_4);
+
+    // listeners
+    bouton_1.addActionListener(this::helloWorld);
+    bouton_2.addActionListener(this::actionPerformed1);
+    bouton_2.addActionListener(this::msgtest);
+        return container;
+}
+
+// parametreur des differents elements composant la page home
+    private JPanel buildAccueilContent(UserWindows userWindows) {
+
+
+        userWindows.setTitle("Home");
 
         //du jlabel bienvenu
         label_1.setFont(new Font("Serif", Font.BOLD, 40));
 
         // du panel
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
-        //   panelTitre.setLayout(new BoxLayout(panelTitre,BoxLayout.LINE_AXIS) );
-        // panelContenuMargin(new BorderLayout());
         panelContenu.setLayout(new GridLayout(4, 1, 20, 30));
+
 
         // les couleurs
         panelTitre.setBackground(Color.CYAN);
@@ -111,45 +125,58 @@ public class UserWindows extends JFrame implements ActionListener {
         bouton_2.setPreferredSize(new Dimension(200, 200));
 
         // assemblages
-        container.add(panelTitre);
-        container.add(panelContenuMargin);
-        panelContenuMargin.add(espaceH);
-        panelContenuMargin.add(panelContenu);
-       // panelContenuMargin.add(espace);
 
-        panelTitre.add(label_1);
-
-        panelContenu.add(bouton_1);
-        panelContenu.add(bouton_2);
-        panelContenu.add(bouton_3);
-        panelContenu.add(bouton_4);
-
-        // listeners
-        bouton_1.addActionListener(this::helloWorld);
-        bouton_2.addActionListener(this::actionPerformed1);
         // return
-        return container;
 
+        return container;
     }
 
 
+// vérifie qu'il n'yait pas de boucle lors du changement de page (a supprimer)
+    private void msgtest(ActionEvent actionEvent) {
+        count++;
+        System.out.println("test d'ajout en boucle? count ="+count);
+    }
+
+
+// ouvre l'exercice 1, et affiche la fenetre HelloWorldWindows piochant dans la classe hellowWorld
 
     public void helloWorld(ActionEvent e) {
       //  exercice1();
-       // System.out.println("coucou message 1");
-        HelloWorld helloWorld = new HelloWorld(this);
+       System.out.println("coucou message 1");
+        HelloWorldWindows fenetreEx1 = new HelloWorldWindows(this);
        // System.out.println(helloWorld.getTexte());
     }
+
+
+
+// sert de test le onclick
     public void actionPerformed1(ActionEvent e) {
         System.out.println("coucoutavu");
     }
 
+// méthode obligatoire d'add listener
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 
-    // methodes autres
+/*
+    public static   JPanel buildEx1Content(){
+
+        JPanel container = new JPanel();
+        JButton boutonRetour = new JButton("retour");
+        container.add(boutonRetour);
+
+        //   boutonRetour.addActionListener(UserWindows);
+        return container;
+    }
+  */
+
+
+// rouvre la page d'accueil
+    public void retourHome(ActionEvent e) {
+       this.setContentPane(buildAccueilContent(this) );
+    }
 
 
 
