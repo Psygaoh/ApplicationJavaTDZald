@@ -1,5 +1,6 @@
 package GUI;
 
+import Application.Devinette;
 import Application.HelloWorld;
 import com.sun.org.apache.xml.internal.security.utils.JDKXPathAPI;
 import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
@@ -87,10 +88,12 @@ public class UserWindows extends JFrame implements ActionListener {
 
     // listeners
     bouton_1.addActionListener(this::helloWorld);
-    bouton_2.addActionListener(this::actionPerformed1);
-    bouton_2.addActionListener(this::msgtest);
+    bouton_2.addActionListener(this::devinette);
+
         return container;
 }
+
+
 
 // parametreur des differents elements composant la page home
     private JPanel buildAccueilContent(UserWindows userWindows) {
@@ -139,16 +142,21 @@ public class UserWindows extends JFrame implements ActionListener {
     }
 
 
-// ouvre l'exercice 1, et affiche la fenetre HelloWorldWindows piochant dans la classe hellowWorld
+
+// ouvre l'exercice 1(hello wworld), et affiche la fenetre HelloWorldWindows piochant dans la classe hellowWorld
 
     public void helloWorld(ActionEvent e) {
       //  exercice1();
-       System.out.println("coucou message 1");
-        HelloWorldWindows fenetreEx1 = new HelloWorldWindows(this);
+        HelloWorldWindows helloWorldWindows = new HelloWorldWindows(this);
        // System.out.println(helloWorld.getTexte());
     }
 
-
+// ouvre exercice 2(devinette), affiche fenetre DevinetteWindows piochant dans la classe Devinette
+    private void devinette(ActionEvent e){
+        DevinetteWindows devinetteWindows = new DevinetteWindows(this);
+        Devinette devinette = new Devinette();
+        devinette.comparer();
+    }
 
 // sert de test le onclick
     public void actionPerformed1(ActionEvent e) {

@@ -1,44 +1,33 @@
 package GUI;
 
-import Application.HelloWorld;
-import javafx.application.Application;
+import Application.Devinette;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class HelloWorldWindows extends JFrame implements ActionListener {
+public class DevinetteWindows {
+    private static String answer = "";
 
-    private static String text = "";
+    public DevinetteWindows(){}
 
-//getters setters
-    public static String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public DevinetteWindows(UserWindows userWindows) {
+        DevinetteWindows devinetteWindows = new DevinetteWindows();
+        Devinette devinette = new Devinette();
+        answer = devinette.getReponse();
+        windowsExercice2(userWindows);
     }
 
 
-// constructeur
-    public HelloWorldWindows(UserWindows userWindows) {
-        HelloWorld helloWorld = new HelloWorld();
-        text = helloWorld.getTexte();
-        windowsExercice1(userWindows);
-    }
+    private void windowsExercice2(UserWindows userWindows){
+        userWindows.setTitle("Exercice 2");
+        userWindows.setContentPane(buildEx2Content(userWindows));
 
-
-// set les parametres de la fentre
-    private void windowsExercice1(UserWindows userWindows){
-        userWindows.setTitle("Exercice 1");
-        userWindows.setContentPane(buildEx1Content(userWindows));
         userWindows.setVisible(true);
+
     }
 
-// créé les nouveaux elements nécessaire
-    public static   JPanel buildEx1Content(UserWindows userWindows){
+
+    public static JPanel buildEx2Content(UserWindows userWindows){
 
         JPanel container = new JPanel();
         JButton boutonRetour = new JButton("retour");
@@ -48,8 +37,9 @@ public class HelloWorldWindows extends JFrame implements ActionListener {
         JPanel panelContenu = new JPanel();
         JPanel espace = new JPanel();
         JPanel espaceH = new JPanel();
-        JLabel labelTitre = new JLabel("Exercice 1");
-        JLabel label1 = new JLabel(getText());
+        JLabel labelTitre = new JLabel("Exercice 2");
+        JLabel labelReponse = new JLabel(getAnswer());
+
 
 
         container.add(panelTitre);
@@ -59,10 +49,10 @@ public class HelloWorldWindows extends JFrame implements ActionListener {
 
         panelTitre.add(boutonRetour);
         panelTitre.add(labelTitre);
-        panelContenu.add(label1);
+
+        panelContenu.add(labelReponse);
 
 
-        label1.setFont(new Font("Serif", Font.BOLD, 40));
         labelTitre.setFont(new Font("Serif", Font.BOLD, 40));
 
         // du panel
@@ -92,20 +82,11 @@ public class HelloWorldWindows extends JFrame implements ActionListener {
         return container;
     }
 
-
-
-
-
-
-
-    public void actionPerformed1(ActionEvent e) {
-        System.out.println("coucoutavu");
+    public static String getAnswer() {
+        return answer;
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
-
-
 }

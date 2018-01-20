@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class HelloWorld extends JFrame /*implements ActionListener*/ {
 
-    private static String texte = "hello le monde, non, on ne chantera pas Zazie";
+    private static String texte = "HELLO WORLD";
 
 
     public HelloWorld() throws HeadlessException {
