@@ -3,13 +3,13 @@ package Application;
 import java.util.Random;
 
 public class Devinette {
-    private Integer target = 0;
-    private Integer input = 5;
-    private String reponse = "Bonne chance!";
+    private static Integer target = 0;
+    private static Integer input = 5;
+    private static String reponse = "Bonne chance!";
 
     public Devinette() {
         setTarget(randInt(0,20));
-        System.out.println(target);
+        System.out.println("target "+target);
     }
 
     public static int randInt(int min, int max) {
@@ -19,7 +19,7 @@ public class Devinette {
     }
 
 
-    public void comparer(){
+    public static void comparer(){
 
         if (input<target){
             System.out.println(plusPetit());
@@ -35,16 +35,16 @@ public class Devinette {
     }
 
 // return réponse plus grand plus petit bonne reponse
-    protected String plusPetit(){
-            return "input plus petit que target";
+    protected static String plusPetit(){
+            return "Votre choix "+input+" est plus petit que target";
     }
 
-    protected String plusGrand(){
-        return "input plus grand que target";
+    protected static String plusGrand(){
+        return "Votre choix "+input+" est input plus grand que target";
     }
 
-    protected String bonneReponse(){
-        return "input = target, bonne réponse";
+    protected static String bonneReponse(){
+        return "Votre choix "+input+" est la Bonne réponse !! Félicitation";
     }
 
 

@@ -25,16 +25,11 @@ public class UserWindows extends JFrame implements ActionListener {
     JPanel espaceH = new JPanel();
 
     JLabel label_1 = new JLabel("welcome");
-    JButton bouton_1 = new JButton("essai");
-    JButton bouton_2 = new JButton("essai2");
-    JButton bouton_3 = new JButton("essai3");
-    JButton bouton_4 = new JButton("essai4");
-    // parametres
+    JButton bouton_1 = new JButton("Hello World");
+    JButton bouton_2 = new JButton("Devine le chiffre");
+    JButton bouton_3 = new JButton("WIP |||         Concession    |||  WORK IN PROGRESS");
+    JButton bouton_4 = new JButton("Calculatrice |||| TODO");
 
-
-
-
-// créer la fenetre de départ
 
     public UserWindows() {
       //  super();
@@ -89,13 +84,14 @@ public class UserWindows extends JFrame implements ActionListener {
     // listeners
     bouton_1.addActionListener(this::helloWorld);
     bouton_2.addActionListener(this::devinette);
+    bouton_3.addActionListener(this::concession);
 
         return container;
 }
 
 
 
-// parametreur des differents elements composant la page home
+    // parametreur des differents elements composant la page home
     private JPanel buildAccueilContent(UserWindows userWindows) {
 
 
@@ -146,18 +142,18 @@ public class UserWindows extends JFrame implements ActionListener {
 // ouvre l'exercice 1(hello wworld), et affiche la fenetre HelloWorldWindows piochant dans la classe hellowWorld
 
     public void helloWorld(ActionEvent e) {
-      //  exercice1();
-        HelloWorldWindows helloWorldWindows = new HelloWorldWindows(this);
-       // System.out.println(helloWorld.getTexte());
-    }
+         HelloWorldWindows helloWorldWindows = new HelloWorldWindows(this);
+     }
 
 // ouvre exercice 2(devinette), affiche fenetre DevinetteWindows piochant dans la classe Devinette
     private void devinette(ActionEvent e){
         DevinetteWindows devinetteWindows = new DevinetteWindows(this);
-        Devinette devinette = new Devinette();
-        devinette.comparer();
-    }
 
+    }
+// ouvre la concession
+    private void concession(ActionEvent actionEvent) {
+        ConcessionWindows concessionWindows = new ConcessionWindows(this);
+    }
 // sert de test le onclick
     public void actionPerformed1(ActionEvent e) {
         System.out.println("coucoutavu");
