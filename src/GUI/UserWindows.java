@@ -16,7 +16,7 @@ import java.io.IOException;
 public class UserWindows extends JFrame implements ActionListener {
     int count = 0;
 
-
+    //elements du GUI important
     JPanel container = new JPanel();
     JPanel panelTitre = new JPanel();
     JPanel panelContenuMargin = new JPanel();

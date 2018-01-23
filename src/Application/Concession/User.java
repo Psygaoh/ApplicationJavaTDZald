@@ -54,9 +54,13 @@ public class User extends Account {
         return numCarte;
     }
 
+
+
     public int getNumClient() {
         return numClient;
     }
+
+
 
     public String getPassword() {
         return password;
@@ -199,6 +203,7 @@ public class User extends Account {
         } ;
         sc.close();
     }
+
 
 
 }
